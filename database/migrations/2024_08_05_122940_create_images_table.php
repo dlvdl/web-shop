@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('product_id');
             $table->string('path');
+            $table->boolean('featured')->default(false);
             $table->timestamps();
         });
     }
