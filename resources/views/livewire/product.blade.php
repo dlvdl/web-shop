@@ -28,7 +28,7 @@
                 @endforeach
             </select>
 
-            @error('$variant')
+            @error('variant')
                 <div class="mt-2 text-red-600">{{ $message }}</div>
             @enderror
 
