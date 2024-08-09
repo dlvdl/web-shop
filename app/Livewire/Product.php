@@ -3,11 +3,14 @@
 namespace App\Livewire;
 
 use App\Actions\Webshop\AddProductVariantToCart;
+use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 use App\Models\Product as ProductModel;
 
 class Product extends Component
 {
+    use InteractsWithBanner;
+
     public ProductModel $product;
     public $variant;
 
@@ -27,6 +30,8 @@ class Product extends Component
         $cart->add(
             $this->variant
         );
+
+        $this->banner('Your product has been added to the cart');
     }
 
     public function render()
