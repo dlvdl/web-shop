@@ -32,6 +32,8 @@ class Product extends Component
         );
 
         $this->banner('Your product has been added to the cart');
+
+        $this->dispatch('productAddedToCart');
     }
 
     public function render()
