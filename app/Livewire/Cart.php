@@ -14,6 +14,28 @@ class Cart extends Component
         return CartFactory::make()->items()->with('variant', 'product')->get();
     }
 
+    public function increment($itemId)
+    {
+        CartFactory::make()->items()->find($itemId)->increment('quantity');
+
+        $this->dispatch('productAddedToCart');
+    }
+
+    public function decrement($itemId)
+    {
+        $item = CartFactory::make()->items()->find($itemId);
+
+        if ($item->quantity > 1) {
+            $item->decrement('quantity');
+        }
+
+        if ($item->quantity === 1) {
+            $item->delete();
+        }
+
+        $this->dispatch('productRemovedFromCart');
+    }
+
     public function delete($itemId)
     {
         CartFactory::make()->items()->where('id', $itemId)->delete();
